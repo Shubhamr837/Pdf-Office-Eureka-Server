@@ -2,11 +2,11 @@ server :
  port : 80
 eureka :
   instance:
-    hostname: eureka-dicovery.eureka-server.com
+    hostname: localhost
   client :
    registerWithEureka : false
    fetchRegistry : false
   server : 
    waitTimeInMsWhenSyncEmpty : 10
   serviceUrl:
-   defaultZone: http://eureka-dicovery.eureka-server.com
+   defaultZone: http://localhost:80
