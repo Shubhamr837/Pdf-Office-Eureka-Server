@@ -9,4 +9,4 @@ eureka :
   server : 
    waitTimeInMsWhenSyncEmpty : 10
   serviceUrl:
-   defaultZone: http://localhost:80
+   defaultZone: http://EurekaService:80/eureka/
