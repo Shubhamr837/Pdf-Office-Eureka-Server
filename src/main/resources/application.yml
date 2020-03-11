@@ -1,5 +1,5 @@
 server :
- port : 80
+ port : 8081
 eureka :
   instance:
     hostname: EurekaService
@@ -9,4 +9,4 @@ eureka :
   server : 
    waitTimeInMsWhenSyncEmpty : 10
   serviceUrl:
-   defaultZone: http://EurekaService:80/eureka/
+   defaultZone: http://eurekaservice:80/eureka/

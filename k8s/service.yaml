@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: EurekaService
+  name: eurekaservice
 spec:
   selector:
     app: eureka
