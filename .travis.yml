@@ -19,7 +19,7 @@ env:
     - secure: NCNEM57aNEiO9nv+ECIRnIK8k+jt+/fx5UQIibHKnVkeKke2wiYsfer6vCrxAh1y1xsBYCLEU0Qt8vqBbhzclm9h0HtZQNdvOToHMRHmRS0EFHneM1G8AuLnsf7QzJg28RxQPFdzdBz9LKG3cUCHUsev3AX9ImPjZi56VelOWPskQZvg6E86NO8imQsWypgpO2AlM3NtMvDVRcPKQH78rnY1FK6+DmF/Hef6XqubwTGjh8r1tyb1gjD6A6DRtByFNlAUPeP3/+LWCBy5iyB8pK6Cus/prZyRUGMAl2caXrdJ+e9z+FMezJSpY3Ma9msMljzfLnbjarpv/PS9D3gQ77QxQOwIGJBfzFs5f9vQtu8x1TuVOoco62WCJCnD1/JxGolUDD7O2KsimuZrmSRfd4PfVBuR9uhm+DC8Qx0u1aURN/6YnH83x0pZW5dN5s+JAutF6XDvk7NeC4vr/2Xr93vUBzBU0EbnGNUPtJIS7kHztR/DWm6bHix6POYpnfpxX82kldgbfhfE1Q3sLQjQ6XYQyJV0heq7DjSRd1r+W0Ojze4c3ogr1dQtBfG9y/BH4RCa5cj6ovrZJRjwasAaiyFFHY2WPCemD36COqGk9suYcGTvV4mwB+mGJRRLvzMfz2namAH1QCXRZvP8JTTYakHZgEmgTul8VMqZAITFd0U=
 
 before_install:
-- echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+- echo "$DOCKERHUB_PASSWORD" | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
 script:
 - "./mvnw package"
 - docker build -t shubhamr837 .
