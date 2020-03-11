@@ -23,7 +23,6 @@ before_install:
 - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD docker.io
 script:
 - ./mvnw package
-- $(aws ecr get-login --no-include-email --region us-east-2)
 - docker build -t shubhamr837 .
 - docker tag shubhamr837:latest shubhamr837/pdf:eureka-server
 - docker push shubhamr837/pdf:eureka-server
