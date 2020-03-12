@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: eurekaservice
 spec:
+  type: ClusterIP
   selector:
     app: eureka
   ports:
