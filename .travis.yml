@@ -18,9 +18,16 @@ env:
   - secure: pGvyfgmefDW1HV7vZGXFLcwBtvtIm4mISPqbdY/YkgIdAw7W3J/G9eNwHg8B3oZhaFqnOgVyCR11UcY0tWr+K9to15wkiKuG3PKkjyrZuB9jT7zSWDFnUlF001vtwZNPUAivE2MdgOFsD73socdMCYCogODlYXNdH4lIp44sfHNkLWTafe+g29THJhh2nmqrDx8L0fYx4FNC2bUssBhOylvExPCCRZjyiRyZ8UWdyvgXU1jC5VooL43BqdgYqHwecGc+CQKalg7a60VVX9Cg0+7JUo9PMrd2k0jISUNhz85FDqmVIGH6+pxgjcI022cNvqpKGbOIFS3cpc4zNFcKC7ymqhe4zGnXytcnYQ6167FktpWPjT71ybFQdT5FT/+tDFaghgBlw5uns4z63xsLDLHQsAX1Y0ZlQ/OEv6A3VRvG/5W2Gjo10xArrPrhs4jEMUeUqSsaNSUdj6M1RKJdpWm3VwDGiSTxzd5FvOKW97aGjjNeu2kwA8wf0gSJtf9Ob3i9yrWTqBqiOg72FAKFm8O1Gwyc/D02OFPzRQeLiY39Xpza+GAihbbsFlvHAy51MTDx/DsLHoKc2mDVqd0cD6nvcZprv9l6DlwwGStqDHbyzx4XN+P5RL1TLpZF6ceq4hI5RiXE18impg3s2e51e4Szd660noZB9wduF6O9NaY=
   - secure: ei6lVqQIqVXKGl12X9DkT6ZAGDdqeq1vTqPyMoCa9+N5eAyX8nb4qiz1JNchhQlbgBvophnKwWTdxGVlE4kC2gI6JkLzYys+Q5TxrnlQEfYJq/YKk1ly7Oh65L4pPMex+WFNuFdaBlH7ZlQ7gnfFnvlVMqpz7tDSI/2DwGk/qqec0mSrsgcSbK47kTZMXMs0r701agMzRtGuXDwi5YaSWFyz28wCQJFy7V4iPzCpL+Gr0GiAjuGgrefPcJ0Oo/EvRXUST3zghIWHAiqH8dsCc38F0QPnsY6XmO/8quJdY95rvHCef/gr9Kty7PguTXTRvS9yaowYloEU4s4BAQSGg/6NCaVVsrrgOrG7jKZ18p4EhKgCRzBrdA6+oVs2yUWrc8p0b/NMJHmUsAWEpINCfrPy/qbJwQiRkNQJ5GXFQqBKVAERCYR1UADJuohfSUYci+WOLIZm5mVXoxnHVedWAULkogo95yD12IaoFHMw/tND+IvAi2Y2cg5oS7445HjwKLBkH0+1AVfFgfrVrF5OMcgmhu/bFRlRfLsES1Fa+RmQGG9k/OZbNu6faDC/v3EQeXWCSOp4xvgixGPxQamRVnOMBni8O5vH/DOe98etZWDGrF3p2JG2KQTy+It2+wFvGt7bFzfYe9MeodKxPhfiwvCs8ndgBYeYhaLVzzq18ds=
 before_install:
-- docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD docker.io
+- openssl aes-256-cbc -K $encrypted_d6eee7dbb31c_key -iv $encrypted_d6eee7dbb31c_iv -in crested-ratio-257703-68453bdb735d.json.enc -out crested-ratio-257703-68453bdb735d.json -d
+- echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+- sudo apt-get install apt-transport-https ca-certificates gnupg
+- curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+- sudo apt-get update && sudo apt-get install google-cloud-sdk
+- gcloud auth activate-service-account --key-file=crested-ratio-257703-68453bdb735d.json
+- gcloud config set project crested-ratio-257703
+- gcloud auth configure-docker
 script:
 - "./mvnw package"
 - docker build -t shubhamr837 .
-- docker tag shubhamr837:latest shubhamr837/pdf:eureka-server
-- docker push shubhamr837/pdf:eureka-server
+- docker tag shubhamr837:latest gcr.io/crested-ratio-257703/pdf-eureka:latest
+- docker push gcr.io/crested-ratio-257703/pdf-eureka:latest
