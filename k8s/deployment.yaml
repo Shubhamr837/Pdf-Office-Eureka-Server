@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: eureka
-          image: 178621424795.dkr.ecr.us-east-2.amazonaws.com/shubhamr837:eureka-server
+          image: gcr.io/crested-ratio-257703/eureka-pdf:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
